@@ -20,14 +20,12 @@ class Field {
 
     // Print the field to the terminal as a matrix
     print() {
-        return this.field.map(row =>
-            row.join('')
-        ).join('\n');
+        return this.field.map(row =>row.join('')).join('\n');
     }
 
     // This checks a users input and moves the cursor accordingly
     ask() {
-        let move = prompt('Which direction would you like to move.(WASD)');
+        let move = prompt('Which direction would you like to move? (WASD to move)');
         switch(move.toLowerCase()) {
             case 'w':
                 console.log('Up');
@@ -62,19 +60,18 @@ class Field {
         // This switch statement simlpy checks the different possible outcomes for when the * is moved in the chosen direction
         switch (this.field[this.y][this.x]) {
             case hole:
-                console.log('You lose - You fell in a hole!');
+                console.log('You lost because you fell in a hole!');
                 currentlyPlaying = false;
                 break;
             case undefined:
-                console.log('You lose - Out of boundary');
+                console.log('You lost because you went out of the boundary');
                 currentlyPlaying = false;
                 break;
             case hat:
-                console.log('You win - You found the hat!');
+                console.log('You win as you found the hat!');
                 currentlyPlaying = false;
                 break;
             case fieldCharacter:
-                console.log('Keep looking for the hat...');
                 this.field[this.y][this.x] = pathCharacter;
                 break;
             case pathCharacter:
@@ -95,7 +92,7 @@ class Field {
                 return fieldCharacter;
               }
             } else {
-              console.log('Please enter a number between 0 - 100');
+              console.log('Enter a number between 0 - 100');
             }
         }
 
@@ -133,7 +130,7 @@ class Field {
 // This generates a new field by invoking the Field class:
 // generateField() takes 3 parameters, the y-axis, the x-axis, and the percentage of holes in the field
 
-const myField = new Field(Field.generateField(10,10,30));
+const myField = new Field(Field.generateField(10,10,25));
 
 function game() {
     while(currentlyPlaying) {
